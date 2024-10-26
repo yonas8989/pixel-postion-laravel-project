@@ -7,8 +7,8 @@
     <title>pixel-project</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div class="bg-gray-800 text-white py-4">
+<body class="bg-gray-900 text-white" >
+    <div class="bg-gray-900 text-white py-4 ">
         <nav class="container mx-auto flex items-center justify-between px-4">
             <!-- Logo Section -->
             <div class="flex items-center space-x-2">
