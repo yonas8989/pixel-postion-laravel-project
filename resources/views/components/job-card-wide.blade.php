@@ -13,6 +13,9 @@
                     {{ $job->title }}
                 </h4>
                 <p class="text-slate-300 mt-2 transition duration-300 ease-in-out hover:text-slate-200">
+                    {{ $job->location }}
+                </p>
+                <p class="text-slate-300 mt-2 transition duration-300 ease-in-out hover:text-slate-200">
                     {{ $job->salary }}
                 </p>
             </div>
