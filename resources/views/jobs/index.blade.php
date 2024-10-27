@@ -1,18 +1,21 @@
 <x-layout>
 
-    <div class="w-fll">
-        <section class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 rounded-lg shadow-xl text-center max-w-lg mx-auto mt-10 ">
+    <div class="w-fll ">
+        <section class="bg-black p-10 rounded-xl shadow-2xl text-center max-w-lg mx-auto mt-12 transition duration-300 ease-in-out transform hover:scale-105 border border-gray-800 mb-5">
             <!-- Heading -->
-            <h1 class="text-3xl font-bold text-white mb-6">Let Us Find a Great Job for You</h1>
+            <h1 class="text-4xl font-extrabold text-white mb-8">Find Your Dream Job</h1>
 
             <!-- Form -->
             <form action="" class="flex flex-col items-center space-y-4">
-                <input type="text" placeholder="Search for a job..." class="w-full px-4 py-3 rounded-lg shadow-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-300 transition" />
-                <button type="submit" class="px-6 py-2 mt-4 text-lg font-semibold text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300">
+                <input type="text" placeholder="Search for a job..." class="w-full px-5 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-600 border border-gray-700 transition duration-200 ease-in-out" />
+
+                <button type="submit" class="w-full px-6 py-3 mt-4 text-lg font-semibold text-white bg-gray-900 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 border border-gray-700 transition duration-300 ease-in-out">
                     Search
                 </button>
             </form>
         </section>
+
+
 
         <section class="bg-gray-800 py-12">
             <div class="container mx-auto px-4">

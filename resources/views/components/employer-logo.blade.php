@@ -1,1 +1,3 @@
-<img src="http://picsum.photos/100/100" alt="Job Logo" class="h-12 w-12 rounded-full object-cover">
+@props(['src'])
+
+<img src="{{ $src }}" alt="employer logo" class="h-16 w-16 rounded-lg object-cover transition duration-300 ease-in-out transform hover:scale-110 mr-2 p-1 bg-gray-800 shadow-lg">
