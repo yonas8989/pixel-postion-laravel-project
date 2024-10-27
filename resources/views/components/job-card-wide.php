@@ -1,4 +1,5 @@
-<!-- Job Card -->
+@prop(['job'])
+
 <div class="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col md:flex-row justify-between items-center mb-4 border-2 border-transparent border-dashed hover:border-indigo-400 transition duration-300 ease-in-out space-y-4 md:space-y-0">
     <!-- Job Information -->
     <div class="flex items-center space-x-4 md:space-x-10 px-4 md:px-8 w-full md:w-auto">
@@ -14,9 +15,10 @@
 
     <!-- Tags and Button -->
     <div class="flex items-center space-x-2 gap-2 justify-center md:justify-end w-full md:w-auto">
-        <x-tag ></x-tag> tag</x-tag>
-        <x-tag ></x-tag>tag </x-tag>
-        <x-tag ></x-tag> tag </x-tag>
-        
+        @foreach ($job ->tags as $tag )
+        <x-tag :$tag> backend</x-tag>
+        @endforeach
+
+
     </div>
 </div>
