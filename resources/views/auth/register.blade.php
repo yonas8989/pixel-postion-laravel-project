@@ -1,4 +1,15 @@
 <x-layout>
     <x-page-heading> Register</x-page-heading>
-    <x-forms.button>click here </x-forms>
+    <x-forms.form method='POST' action="/register">
+        <x-forms.input label="Name" name="name" />
+        <x-forms.input label="Email" name="email" type="email" />
+        <x-forms.input label="Password" name="password" type="password" />
+        <x-forms.input label="Password confirmation" name="password_confirmation" type="password" />
+
+        <x-forms.divider/>
+        <x-forms.input label="Employer Name" name="employer" />
+        <x-forms.input label="Employer Logo" name="Logo" type="file" />
+
+        <x-forms.button>create account </x-forms.button>
+    </x-forms.form>
 </x-layout>
