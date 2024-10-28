@@ -2,7 +2,7 @@
     <x-page-heading>
         Create Job
     </x-page-heading>
-    <x-forms.form method='POST' action="/jobs " enctype="multipart/form-data">
+    <x-forms.form method='POST' action="{{ route('jobs.store') }} " enctype="multipart/form-data">
         <x-forms.input label="Title" name="title" placeholder="Job Title" />
         <x-forms.input label="Salary" name="salary" placeholder="Salary" />
         <x-forms.input label="Location" name="location" placeholder="Location" />

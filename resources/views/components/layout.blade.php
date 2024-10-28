@@ -35,7 +35,8 @@
             @endguest
             @auth
             <div class="hidden md:flex space-x-6">
-                <a href="/jobs/create" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a>
+                {{-- <a href="/jobs/create" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a> --}}
+                <a href="{{ route('jobs.create') }}" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a>
             </div>
             @endauth
 

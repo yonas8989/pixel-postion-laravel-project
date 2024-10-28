@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [JobController::class, 'index']);
+Route::get("/", [JobController::class, 'index'])->name('home');
 
 Route::middleware("guest")->group(function () {
     Route::get("/register", [RegisterUserController::class, "create"]);
@@ -28,8 +28,10 @@ Route::middleware("guest")->group(function () {
     Route::post("/login", [SessionController::class, "store"]);
 });
 
-Route::get("/jobs/create",[JobController::class , "create"])->middleware(['auth']);
-Route::post("/jobs",[JobController::class , "store"])->middleware(["auth"]);
+// Route::get("/jobs/create",[JobController::class , "create"])->middleware(['auth']);
+// Route::post("/jobs",[JobController::class , "store"])->middleware(["auth"]);
+
+Route::resource('/jobs',JobController::class)->middleware(["auth"]);
 
 
 

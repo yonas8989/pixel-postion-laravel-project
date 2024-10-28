@@ -10,8 +10,8 @@
                     {{ $job->employer->name }}
                 </div>
                 <h4 class="text-xl font-semibold text-slate-100 transition duration-300 ease-in-out hover:text-indigo-400">
-                    {{ $job->title }}
-                </h4>
+                    <a href="{{ $job->url }}"> {{ $job->title }}
+                    </a> </h4>
                 <p class="text-slate-300 mt-2 transition duration-300 ease-in-out hover:text-slate-200">
                     {{ $job->location }}
                 </p>
@@ -24,7 +24,7 @@
         <!-- Tags on the opposite side -->
         <div class="flex items-center space-x-2">
             @foreach ($job->tags as $tag)
-                <x-tag :tag="$tag" class="transition duration-300 ease-in-out hover:text-indigo-400 "/>
+            <x-tag :tag="$tag" class="transition duration-300 ease-in-out hover:text-indigo-400 " />
             @endforeach
         </div>
     </div>
