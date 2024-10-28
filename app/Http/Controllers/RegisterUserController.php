@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\Rules\Unique;
 
 class RegisterUserController extends Controller
 {

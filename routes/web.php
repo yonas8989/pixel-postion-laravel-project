@@ -28,6 +28,12 @@ Route::middleware("guest")->group(function () {
     Route::post("/login", [SessionController::class, "store"]);
 });
 
+Route::get("/jobs/create",[JobController::class , "create"])->middleware(['auth']);
+Route::post("/jobs",[JobController::class , "store"])->middleware(["auth"]);
+
+
+
+
 Route::get("/search",SearchController::class );
 Route::get("/tags/{tag:name}",TagController::class );
 
