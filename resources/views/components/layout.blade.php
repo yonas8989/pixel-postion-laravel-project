@@ -7,7 +7,7 @@
     <title>pixel-project</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-900 text-white" >
+<body class="bg-gray-900 text-white">
     <div class="bg-gray-900 text-white py-4 ">
         <nav class="container mx-auto flex items-center justify-between px-4">
             <!-- Logo Section -->
@@ -27,11 +27,17 @@
             </div>
 
             <!-- Post a Job Button -->
-            <div>
-                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
-                    Post a Job
-                </a>
+            @guest
+            <div class="hidden md:flex space-x-6">
+                <a href="/register" class="hover:text-blue-400 transition duration-200">sign up </a>
+                <a href="/login" class="hover:text-blue-400 transition duration-200">log in </a>
             </div>
+            @endguest
+            @auth
+            <div class="hidden md:flex space-x-6">
+                <a href="/jobs/create" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a>
+            </div>
+            @endauth
 
             <!-- Mobile Menu Button (for small screens) -->
             <div class="md:hidden">
