@@ -9,6 +9,6 @@ class Tag extends Model
 {
     use HasFactory;
     public function jobs(){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Job::class);
     }
 }
