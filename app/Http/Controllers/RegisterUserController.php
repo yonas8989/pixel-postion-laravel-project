@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules\Unique;
 
 class RegisterUserController extends Controller
 {
@@ -27,38 +32,31 @@ class RegisterUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // validate the request and pass directly to create  
+        $userAttributes = $request->validate([
+            "name" => ["required", "string"],
+            "email" => ["required", "email", "unique:users,email"],
+            "password" => ["required", 'confirmed', Password::min(3)],
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        ]);
+        $employerAttributes = $request->validate([
+            "employer" => ["required"],
+            "logo" => ["required", File::types(["png", "jpg", 'webp'])],
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // then create the user 
+        $user = User::create($userAttributes);
+        // store logo of employer in file system
+        $logoPath = $request->logo->store('logos');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // then also create the employer 
+        $user->employer()->create(
+            ["name" => $employerAttributes['employer'], 'logo' => $logoPath]
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        );
+        // then log in the user
+        Auth::login($user);
+        // then redirect 
+        return redirect('/');
     }
 }

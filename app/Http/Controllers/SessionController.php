@@ -19,7 +19,7 @@ class SessionController extends Controller
      */
     public function create()
     {
-        //
+        dd("this is login page");
     }
 
     /**
