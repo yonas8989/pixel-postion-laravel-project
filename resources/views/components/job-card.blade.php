@@ -4,7 +4,7 @@
     <!-- Job Information -->
     <div class="flex items-center space-x-4">
         <!-- Company Logo -->
-        <x-employer-logo :src="$job->employer->logo" />
+        <x-employer-logo :employer="$job->employer" />
 
         <!-- Job Details -->
         <div class="px-4">

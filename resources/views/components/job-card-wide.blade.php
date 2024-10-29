@@ -3,7 +3,8 @@
     <div class="flex justify-between w-full">
         <!-- Company Logo and Job Details -->
         <div class="flex items-center space-x-4">
-            <x-employer-logo :src="$job->employer->logo" class="mr-3" />
+                <x-employer-logo :employer="$job->employer" class="mr-3"/>
+
 
             <div class="px-4">
                 <div class="text-slate-400 font-semibold mb-1 transition duration-300 ease-in-out hover:text-indigo-400">

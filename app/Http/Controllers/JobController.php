@@ -48,8 +48,7 @@ class JobController extends Controller
             "title" => ["required"],
             "salary" => ["required"],
             "location" => ["required"],
-            "schedule" => ["required", Rule::in(["Full time ", "Part time"])],
-
+            "schedule" => ["required", Rule::in(["Full time", "Part time"])],
             "url" => ["required", 'active_url'],
             "tags" => ["nullable"]
 
