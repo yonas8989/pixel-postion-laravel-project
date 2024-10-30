@@ -58,13 +58,16 @@ class JobController extends Controller
 //    show specific resource 
     public function show(Job $job)
     {
-        //
+        $job = Job::find($job->id);
+        return view("jobs.show", [
+            'job' => $job,
+        ]);
     }
 
 //    edit job
     public function edit(Job $job)
     {
-        //
+        // return view("jobs.edit");
     }
 
 //  update a resource 
