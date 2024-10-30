@@ -35,8 +35,16 @@
             @endguest
             @auth
             <div class="hidden md:flex space-x-6">
-                {{-- <a href="/jobs/create" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a> --}}
                 <a href="{{ route('jobs.create') }}" class="hover:text-blue-400 transition duration-200 text-2xl ">Post job </a>
+                <form method="POST" action="/logout">
+                    @csrf
+                    @method('delete')
+                    <button class="hover:text-blue-400 transition duration-200 text-2xl"> Log out </button>
+
+                </form>
+
+             
+
             </div>
             @endauth
 

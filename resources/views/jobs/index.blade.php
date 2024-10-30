@@ -1,6 +1,15 @@
 <x-layout>
 
     <div class="w-fll ">
+        @if (session('success'))
+        <script>
+            window.onload = function() {
+                alert("{{ session('success') }}");
+            };
+
+        </script>
+        @endif
+
         <section class="bg-black p-10 rounded-xl shadow-2xl text-center max-w-lg mx-auto mt-12 transition duration-300 ease-in-out transform hover:scale-105 border border-gray-800 mb-5 ">
             <!-- Heading -->
             <h1 class="text-4xl font-extrabold text-white mb-8">Find Your Dream Job</h1>
