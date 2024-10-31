@@ -28,9 +28,8 @@
 
                 <!-- Job Card Grid -->
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($featuredJobs as $job )
+                    @foreach ($featuredJobs as $job ) 
                     <x-job-card :$job></x-job-card>
-
                     @endforeach
                 </div>
             </div>
