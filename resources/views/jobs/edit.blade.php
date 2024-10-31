@@ -65,7 +65,7 @@
     
             <!-- Update Button -->
             <div class="text-center">
-                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300 ease-in-out dark:bg-indigo-700 dark:hover:bg-indigo-800">
+                <button type="submit" class="inline-block bg-indigo-900 text-white font-semibold px-5 py-2 rounded-md shadow-md hover:bg-indigo-700 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-indigo-700 dark:hover:bg-indigo-800">
                     Update Job
                 </button>
             </div>

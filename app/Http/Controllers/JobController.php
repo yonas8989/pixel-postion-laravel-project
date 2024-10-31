@@ -16,9 +16,9 @@ class JobController extends Controller
 {
     public function index()
     {
-        $featuredJobs = Job::with(["employer"  ,"tags"])->where('featured', true)->latest()->get();
-        $jobs = Job::with(["employer"  ,"tags"])->where("featured", false)->latest()->get();
-    
+        $featuredJobs = Job::with(["employer", "tags"])->where('featured', true)->latest()->get();
+        $jobs = Job::with(["employer", "tags"])->where("featured", false)->latest()->get();
+
         return view('jobs.index', [
             'jobs' => $jobs,
             'featuredJobs' => $featuredJobs,
@@ -55,7 +55,7 @@ class JobController extends Controller
         return redirect("/");
     }
 
-//    show specific resource 
+    //    show specific resource 
     public function show(Job $job)
     {
         $job = Job::find($job->id);
@@ -64,17 +64,20 @@ class JobController extends Controller
         ]);
     }
 
-//    edit job
+    //    edit job
     public function edit(Job $job)
     {
-        return view("jobs.edit", ["job"=> $job]);
+        if (Auth::guest()) {
+            return redirect('login');
+        }
+        return view("jobs.edit", ["job" => $job]);
     }
 
-//  update a resource 
+    //  update a resource 
     public function update(Job $job)
     {
         // validate
-       request()->validate([
+        request()->validate([
             "title" => ["required"],
             "salary" => ["required"],
             "location" => ["required"],
@@ -83,20 +86,20 @@ class JobController extends Controller
             "tags" => ["nullable"]
 
         ]);
-        
+
         //update
         $job->update([
-            "title"=>request("title"),
-            "salary"=>request("salary"),
-            "location"=> request("location"),
-            "schedule"=> request("schedule"),
-            "url"=> request("url"),
+            "title" => request("title"),
+            "salary" => request("salary"),
+            "location" => request("location"),
+            "schedule" => request("schedule"),
+            "url" => request("url"),
             // "tags" => request("tags")
         ]);
         return redirect("/");
     }
 
-// delete resourece 
+    // delete resourece 
     public function destroy(Job $job)
     {
         $job->delete();
