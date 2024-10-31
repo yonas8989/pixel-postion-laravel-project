@@ -91,14 +91,15 @@ class JobController extends Controller
             "location"=> request("location"),
             "schedule"=> request("schedule"),
             "url"=> request("url"),
-            "tags" => request("tags")
+            // "tags" => request("tags")
         ]);
+        return redirect("/");
     }
 
 // delete resourece 
     public function destroy(Job $job)
     {
         $job->delete();
-        return redirect("/");
+        redirect("/");
     }
 }

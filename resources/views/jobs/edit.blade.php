@@ -1,21 +1,74 @@
 <x-layout>
-    <x-page-heading>
-        Edit Job
-    </x-page-heading>
-    <x-forms.form method='POST' action="{{ route('jobs.store') }} " enctype="multipart/form-data">
-        <x-forms.input label="Title" name="title" placeholder="Job Title" />
-        <x-forms.input label="Salary" name="salary" placeholder="Salary" />
-        <x-forms.input label="Location" name="location" placeholder="Location" />
-        <x-forms.input label="URL" name="url" placeholder="http://yonasfikadie@gmail.com" />
-        <x-forms.input label="tags(comma separated)" name="tags" placeholder="laracasts, video, education" />
-        <x-forms.select label="Schedule" name="schedule">
-            <option > Part time</option>
-            <option > full time</option>
-        </x-forms.select>
-        <x-forms.divider/>
-        <x-forms.checkbox name="featured"  label="Feature(Costs Extra)">
-        </x-forms.checkbox>
-        <x-forms.button> Update </x-forms.button>
-    </x-forms.form>
+    <div class="container mx-auto p-6 max-w-2xl bg-gray-800 rounded-lg shadow-lg dark:bg-gray-900">
+        <h2 class="text-2xl font-bold text-gray-100 mb-6 dark:text-gray-200">Edit Job</h2>
+    
+        <form action="{{ route('jobs.update', $job->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+    
+            <!-- Job Title -->
+            <div class="mb-4">
+                <label for="title" class="block text-gray-300 mb-1 dark:text-gray-400">Job Title</label>
+                <input type="text" id="title" name="title" value="{{ old('title', $job->title) }}" required class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                @error('title')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- Location -->
+            <div class="mb-4">
+                <label for="location" class="block text-gray-300 mb-1 dark:text-gray-400">Location</label>
+                <input type="text" id="location" name="location" value="{{ old('location', $job->location) }}" required class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                @error('location')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- Salary -->
+            <div class="mb-4">
+                <label for="salary" class="block text-gray-300 mb-1 dark:text-gray-400">Salary</label>
+                <input type="text" id="salary" name="salary" value="{{ old('salary', $job->salary) }}" required class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                @error('salary')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- Schedule -->
+            <div class="mb-4">
+                <label for="schedule" class="block text-gray-300 mb-1 dark:text-gray-400">Schedule</label>
+                <select id="schedule" name="schedule" required class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                    <option value="Full time" {{ $job->schedule == 'Full time' ? 'selected' : '' }}>Full time</option>
+                    <option value="Part time" {{ $job->schedule == 'Part time' ? 'selected' : '' }}>Part time</option>
+                </select>
+                @error('schedule')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- URL -->
+            <div class="mb-4">
+                <label for="url" class="block text-gray-300 mb-1 dark:text-gray-400">Application URL</label>
+                <input type="url" id="url" name="url" value="{{ old('url', $job->url) }}" required class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                @error('url')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- Tags -->
+            <div class="mb-6">
+                <label for="tags" class="block text-gray-300 mb-1 dark:text-gray-400">Tags (comma separated)</label>
+                <input type="text" id="tags" name="tags" value="{{ old('tags', implode(',', $job->tags->pluck('name')->toArray())) }}" class="w-full p-2 bg-gray-700 text-gray-100 rounded-md focus:border-indigo-400 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-200">
+                @error('tags')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+    
+            <!-- Update Button -->
+            <div class="text-center">
+                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300 ease-in-out dark:bg-indigo-700 dark:hover:bg-indigo-800">
+                    Update Job
+                </button>
+            </div>
+        </form>
+    </div>
 </x-layout>
-
