@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreJobRequest;
+use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -28,18 +30,10 @@ class JobController extends Controller
     {
         return view("jobs.create");
     }
-    public function store(Request $request)
+    public function store(StoreJobRequest $request)
     {
         // validate 
-        $attributes = $request->validate([
-            "title" => ["required"],
-            "salary" => ["required"],
-            "location" => ["required"],
-            "schedule" => ["required", Rule::in(["Full time", "Part time"])],
-            "url" => ["required", 'active_url'],
-            "tags" => ["nullable"]
-
-        ]);
+        $attributes = $request->validated();
         $attributes["featured"] = $request->has('featured');
         // if it pass validation create the job
         $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, ['tags']));
@@ -70,28 +64,13 @@ class JobController extends Controller
     }
 
     //  update a resource 
-    public function update(Job $job)
+    public function update(UpdateJobRequest $request , Job $job)
     {
         // validate
-        request()->validate([
-            "title" => ["required"],
-            "salary" => ["required"],
-            "location" => ["required"],
-            "schedule" => ["required", Rule::in(["Full time", "Part time"])],
-            "url" => ["required", 'active_url'],
-            "tags" => ["nullable"]
-
-        ]);
+        $attributes=$request->validated();
 
         //update
-        $job->update([
-            "title" => request("title"),
-            "salary" => request("salary"),
-            "location" => request("location"),
-            "schedule" => request("schedule"),
-            "url" => request("url"),
-            // "tags" => request("tags")
-        ]);
+        $job->update($attributes);
         return redirect("/");
     }
 

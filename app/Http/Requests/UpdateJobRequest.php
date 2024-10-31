@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateJobRequest extends FormRequest
 {
@@ -22,7 +23,12 @@ class UpdateJobRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "title" => ["required"],
+            "salary" => ["required"],
+            "location" => ["required"],
+            "schedule" => ["required", Rule::in(["Full time", "Part time"])],
+            "url" => ["required", 'active_url'],
+            "tags" => ["nullable"]
         ];
     }
 }
