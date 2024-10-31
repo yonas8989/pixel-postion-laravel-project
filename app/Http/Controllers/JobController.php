@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Tag;
@@ -67,9 +65,7 @@ class JobController extends Controller
     //    edit job
     public function edit(Job $job)
     {
-        if (Auth::guest()) {
-            return redirect('login');
-        }
+        $this->authorize("update", $job);
         return view("jobs.edit", ["job" => $job]);
     }
 
