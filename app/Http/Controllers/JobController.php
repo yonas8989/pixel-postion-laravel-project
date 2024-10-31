@@ -67,18 +67,38 @@ class JobController extends Controller
 //    edit job
     public function edit(Job $job)
     {
-        // return view("jobs.edit");
+        return view("jobs.edit", ["job"=> $job]);
     }
 
 //  update a resource 
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(Job $job)
     {
-        //
+        // validate
+       request()->validate([
+            "title" => ["required"],
+            "salary" => ["required"],
+            "location" => ["required"],
+            "schedule" => ["required", Rule::in(["Full time", "Part time"])],
+            "url" => ["required", 'active_url'],
+            "tags" => ["nullable"]
+
+        ]);
+        
+        //update
+        $job->update([
+            "title"=>request("title"),
+            "salary"=>request("salary"),
+            "location"=> request("location"),
+            "schedule"=> request("schedule"),
+            "url"=> request("url"),
+            "tags" => request("tags")
+        ]);
     }
 
 // delete resourece 
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+        return redirect("/");
     }
 }
