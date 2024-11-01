@@ -68,16 +68,29 @@ class JobController extends Controller
         return view("jobs.edit", ["job" => $job]);
     }
 
-    //  update a resource 
-    public function update(UpdateJobRequest $request , Job $job)
+    public function update(UpdateJobRequest $request, Job $job)
     {
-        // validate
-        $attributes=$request->validated();
+        // Validate the incoming request and get the validated attributes
+        $attributes = $request->validated();
 
-        //update
-        $job->update($attributes);
-        return redirect("/");
+        // Update the job attributes except for 'tags'
+        $job->update(Arr::except($attributes, ['tags']));
+
+        // If there are tags provided, handle them
+        if ($attributes["tags"] ?? false) {
+            // Assuming the 'tag' method is defined in the Job model
+            // Clear existing tags first if needed (optional)
+            $job->tags()->detach(); // Detach existing tags, adjust as per your needs
+
+            foreach (explode(",", $attributes["tags"]) as $tag) {
+                $job->tag($tag);
+            }
+        }
+
+        // Redirect to the home page or another appropriate route
+        return redirect("/")->with('success', 'Job updated successfully!');
     }
+
 
     // delete resourece 
     public function destroy(Job $job)
