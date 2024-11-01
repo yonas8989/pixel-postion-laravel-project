@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Mail\JobPosted;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
 use App\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class JobController extends Controller
@@ -42,6 +44,9 @@ class JobController extends Controller
                 $job->tag($tag);
             }
         }
+
+        Mail::to($job->employer->user)->send(new JobPosted($job));
+
         // after that redirect 
 
         return redirect("/");

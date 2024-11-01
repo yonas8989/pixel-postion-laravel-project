@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Employer;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
