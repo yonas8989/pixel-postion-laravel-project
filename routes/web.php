@@ -5,9 +5,13 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
+use App\Jobs\TanslateJob;
 use Illuminate\Support\Facades\Route;
 
-
+Route::get("test" , function (){
+    TanslateJob::dispatch();
+    return "done";
+});
 Route::get("/", [JobController::class, 'index'])->name('home');
 
 Route::middleware("guest")->group(function () {
